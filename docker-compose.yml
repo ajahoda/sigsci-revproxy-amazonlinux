@@ -1,0 +1,12 @@
+version: '3'
+services:
+  sigsci-agent-sidecar:
+    build: .
+    ports:
+     - "8082:80"
+    environment:
+     - SIGSCI_ACCESSKEYID=SETME
+     - SIGSCI_SECRETACCESSKEY=SETME
+     - SIGSCI_REVPROXY_LISTENER=examplename:{listener=http://0.0.0.0:80,upstreams=http://springboot-app:8080}
+  springboot-app:
+    image: "springio/gs-spring-boot-docker"
